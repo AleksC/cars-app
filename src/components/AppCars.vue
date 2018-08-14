@@ -41,8 +41,10 @@ export default {
   methods: {
     deleteCar(id) {
       if (confirm("Are you sure you want to delete this car?")) {
-        cars.delete(id);
-        this.cars = this.cars.filter(car => car.id !== id);
+        cars
+          .delete(id)
+          .then(response => this.$emit("carDeleted", id))
+          .catch(err => console.log(err));
       }
     }
   }

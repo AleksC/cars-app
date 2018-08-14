@@ -1,6 +1,6 @@
 <template>
     <div>
-        <AppCars :cars="cars" />
+        <AppCars @carDeleted=carDeleted :cars="cars" />
         
     </div>
 </template>
@@ -16,6 +16,11 @@ export default {
     return {
       cars: []
     };
+  },
+  methods: {
+    carDeleted(id) {
+      this.cars = this.cars.filter(car => car.id !== id);
+    }
   },
   beforeRouteEnter(to, from, next) {
     cars
